@@ -6,9 +6,23 @@ import java.io.Serializable;
 
 
 /**
- * Base class for Enemies and the Player.
+ * Base class for {@link flowerDevour.enemies.Enemy} and {@link Player} objects.
  * <p>
  * Holds basic statistics like health, name, etc.
+ * <p>
+ * Each Entity has a target Entity. This field is used
+ * in combination with the doMove() method.
+ * <p>
+ * At it's most basic, doMove() should set the
+ * targets for a {@link flowerDevour.actions.BasicAction} and then execute it.
+ * <p>
+ * The turn of an Entity should look like this:
+ * <p></p>
+ * 1. Set the targets of the BasicAction.
+ * <p>
+ * 2. Execute the BasicAction.
+ * </p>
+ * 3. Pass the turn.
  */
 public class Entity implements Serializable
 {
@@ -28,7 +42,6 @@ public class Entity implements Serializable
         setHealth(health);
         setName(name);
     }
-
 
     //for copying objects
     public Entity(Entity entity) throws EntityException
@@ -96,7 +109,7 @@ public class Entity implements Serializable
     /**
      * Mandatory to set up before using doMove()
      *
-     * @param target The flowerDevour.Entity that will be targeted.
+     * @param target The {@link Entity} that will be targeted.
      * @throws ActionException
      */
     public void setTarget(Entity target) throws ActionException
@@ -111,7 +124,7 @@ public class Entity implements Serializable
 
     /**
      * Abstract method.
-     * Executes selected action on target.
+     * Executes selected BasicAction on target.
      */
     public void doMove()
     {
@@ -127,14 +140,13 @@ public class Entity implements Serializable
         return false;
     }
 
-
     @Override
     public String toString()
     {
-        return "flowerDevour.Entity{" +
-            "health=" + health +
-            ", maxHealth=" + maxHealth +
-            ", name='" + name + '\'' +
-            '}';
+        return "Entity{" +
+                "health=" + health +
+                ", maxHealth=" + maxHealth +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -7,9 +7,13 @@ import flowerDevour.actions.BasicAction;
 import java.io.Serializable;
 
 /**
- * Parent class for Items with BasicActions.
+ * Parent class for Items with {@link BasicAction}s.
  * <p>
- * This is the main way for the Player to interact with enemies.
+ * This is the main way for the {@link flowerDevour.Player} to interact with
+ * {@link flowerDevour.enemies.Enemy} objects.
+ * <p>
+ * There should be no reason to change this class. If you disagree, bring
+ * it up with the rest of the team.
  */
 public class Tool extends Item implements Serializable
 {
@@ -60,7 +64,7 @@ public class Tool extends Item implements Serializable
     public String toString()
     {
         return super.toString() +
-            "move=" + move +
-            '}';
+                "move=" + move +
+                '}';
     }
 }

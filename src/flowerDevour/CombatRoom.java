@@ -9,13 +9,17 @@ import flowerDevour.tools.Tool;
 /**
  * This is an object that stores basic data for a combat room.
  * <p>
- * It stores an Enemy and sometimes a Tool to reward the Player
- * with.
+ * It should always store an {@link Enemy} and occasionally a {@link Tool} to reward
+ * the {@link Player} with.
  * <p>
- * THAT'S IT!!!!!!!!!!!!
+ * There should be no reason to change this class. If you disagree, bring
+ * it up with the rest of the team.
  */
 public class CombatRoom extends Room
 {
+    public static final int WITH_REWARD = 0;
+    public static final int WITHOUT_REWARD = 1;
+
     private Enemy enemy;
     private Tool reward;
 
@@ -25,7 +29,7 @@ public class CombatRoom extends Room
     }
 
     /**
-     * @param enemy  Enemy the player will encounter in this room.
+     * @param enemy  {@link Enemy} the player will encounter in this room.
      * @param reward The reward the player will get after defeating
      *               the enemy in this room.
      */
@@ -37,7 +41,7 @@ public class CombatRoom extends Room
     }
 
     /**
-     * @param enemy Enemy the player will encounter in this room.
+     * @param enemy {@link Enemy} the player will encounter in this room.
      */
     public CombatRoom(Enemy enemy)
     {
@@ -64,5 +68,30 @@ public class CombatRoom extends Room
     public void setReward(Tool reward)
     {
         this.reward = reward;
+    }
+
+    /**
+     * Creates a new {@link CombatRoom} with a random {@link Enemy}
+     * and random {@link Tool} as a reward if specified {@code WITH_REWARD}.
+     *
+     * @param mode Either {@code WITH_REWARD} or {@code WITHOUT_REWARD}.
+     * @return A {@link CombatRoom} with a random {@link Enemy} and random
+     * reward if specified {@code WITH_REWARD}.
+     */
+    public static CombatRoom initializeRandomCombatRoom(int mode)
+    {
+        CombatRoom room = new CombatRoom();
+
+        room.setEnemy(GameMaster.provideRandomEnemy());
+        if (mode == WITH_REWARD)
+        {
+            room.setReward(GameMaster.provideRandomTool());
+        }
+        else
+        {
+            room.setReward(null);
+        }
+
+        return room;
     }
 }

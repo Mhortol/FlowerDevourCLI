@@ -1,7 +1,7 @@
 package flowerDevour;
 
 /**
- * Parent class for all rooms that a Player could enter.
+ * Parent class for all rooms that the {@link Player} could enter from the {@link Map}.
  */
 public class Room
 {

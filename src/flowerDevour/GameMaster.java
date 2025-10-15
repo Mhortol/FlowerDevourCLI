@@ -13,12 +13,16 @@ import java.util.Random;
 
 
 /**
- * Responsible for various game objects.
+ * Responsible for various game objects. Currently, stores all {@link Enemy}, {@link Tool}
+ * and {@link PassiveItem} objects.
  * <p>
- * Game objects initialized from JSONs.
+ * Game objects initialized from JSONs in the assets/JSONs folder.
  * <p>
  * For JSON writing, don't forget to declare the class of the object
- * when writing them. Refer to the enemies.json file for reference.
+ * when writing them. Refer to any existing entries for example.
+ * <p>
+ * When writing a new method to provide a game object, don't forget to use copy
+ * constructors.
  */
 public class GameMaster
 {
@@ -28,7 +32,7 @@ public class GameMaster
 
 
     /**
-     * @return Reads enemies.JSON, turns it into an ArrayList and returns it.
+     * @return Reads enemies.JSON, turns it into an {@link ArrayList} and returns it.
      */
     static public ArrayList<Enemy> initializeEnemies()
     {
@@ -49,7 +53,7 @@ public class GameMaster
     }
 
     /**
-     * @return Reads tools.JSON, turns it into an ArrayList and returns it.
+     * @return Reads tools.JSON, turns it into an {@link ArrayList} and returns it.
      */
     static public ArrayList<Tool> initializeTools()
     {
@@ -70,7 +74,7 @@ public class GameMaster
     }
 
     /**
-     * @return Reads passives.JSON, turns it into an ArrayList and returns it.
+     * @return Reads passives.JSON, turns it into an {@link ArrayList} and returns it.
      */
     static public ArrayList<PassiveItem> initializePassives()
     {
@@ -106,7 +110,7 @@ public class GameMaster
     }
 
     /**
-     * @return Returns a copy of a random Enemy from the list.
+     * @return Returns a copy of a random {@link Enemy} from the list.
      */
     static public Enemy provideRandomEnemy()
     {
@@ -118,7 +122,7 @@ public class GameMaster
     }
 
     /**
-     * @return Returns a copy of a random Tool from the list.
+     * @return Returns a copy of a random {@link Tool} from the list.
      */
     static public Tool provideRandomTool()
     {
@@ -130,7 +134,7 @@ public class GameMaster
     }
 
     /**
-     * @return Returns a copy of a random PassiveItem from the list.
+     * @return Returns a copy of a random {@link PassiveItem} from the list.
      */
     static public PassiveItem provideRandomPassive()
     {
@@ -142,8 +146,8 @@ public class GameMaster
     }
 
     /**
-     * @param name Name of Enemy to return.
-     * @return Returns Enemy with given name if it exists, else
+     * @param name Name of {@link Enemy} to return.
+     * @return Returns {@link Enemy} with given name if it exists, else
      * returns null.
      */
     static public Enemy searchForEnemy(String name)
@@ -160,8 +164,8 @@ public class GameMaster
     }
 
     /**
-     * @param name Name of Tool to return.
-     * @return Returns Tool with given name if it exists, else
+     * @param name Name of {@link Tool} to return.
+     * @return Returns {@link Tool} with given name if it exists, else
      * returns null.
      */
     static public Tool searchForTool(String name)
@@ -178,8 +182,8 @@ public class GameMaster
     }
 
     /**
-     * @param name Name of PassiveItem to return.
-     * @return Returns PassiveItem with given name if it exists, else
+     * @param name Name of {@link PassiveItem} to return.
+     * @return Returns {@link PassiveItem} with given name if it exists, else
      * returns null.
      */
     static public PassiveItem searchForPassive(String name)
@@ -196,8 +200,10 @@ public class GameMaster
     }
 
     /**
-     * @param index Index of Enemy to return.
-     * @return Returns Enemy with given index, else
+     * Returns the {@link Enemy} at index in the list.
+     *
+     * @param index Index of {@link Enemy} to return.
+     * @return Returns {@link Enemy} with given index, else
      * throws.
      */
     static public Enemy searchForEnemy(int index)
@@ -206,8 +212,10 @@ public class GameMaster
     }
 
     /**
-     * @param index Index of Tool to return.
-     * @return Returns Tool with given index, else
+     * Returns the {@link Tool} at index in the list.
+     *
+     * @param index Index of {@link Tool} to return.
+     * @return Returns {@link Tool} with given index, else
      * throws.
      */
     static public Tool searchForTool(int index)
@@ -216,8 +224,10 @@ public class GameMaster
     }
 
     /**
-     * @param index Index of PassiveItem to return.
-     * @return Returns PassiveItem with given index, else
+     * Returns the {@link PassiveItem} at index in the list.
+     *
+     * @param index Index of {@link PassiveItem} to return.
+     * @return Returns {@link PassiveItem} with given index, else
      * throws.
      */
     static public PassiveItem searchForPassive(int index)

@@ -11,6 +11,17 @@ import java.util.Map;
 import java.util.Objects;
 
 
+/**
+ * This is a basic Enemy that can do one {@link BasicAction}.
+ * <p>
+ * The turn of an Enemy should look like this:
+ * <p>
+ * 1. Set the Enemy's target.
+ * <p></p>
+ * 2. The Enemy does its move.
+ * <p>
+ * 3. The Enemy passes it's turn.
+ */
 public class Enemy extends Entity implements Serializable
 {
     private BasicAction move;
@@ -49,15 +60,13 @@ public class Enemy extends Entity implements Serializable
         this.move = move;
     }
 
+    /**
+     * Set's the {@link BasicAction}'s user to this {@link Enemy}
+     * and target to {@link Enemy}'s target, then executes it.
+     */
     public void doMove()
     {
-        move.setTarget(super.getTarget());
-        move.execute();
-    }
-
-    public void doMove(Player player)
-    {
-        move.setUser(player);
+        move.setUser(this);
         move.setTarget(super.getTarget());
         move.execute();
     }
@@ -66,8 +75,8 @@ public class Enemy extends Entity implements Serializable
     public String toString()
     {
         return "Enemy{" +
-            "move=" + move +
-            super.toString() +
-            '}';
+                "move=" + move +
+                super.toString() +
+                '}';
     }
 }

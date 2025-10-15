@@ -13,7 +13,6 @@ import java.io.Serializable;
 public class Item implements Serializable
 {
     private String name;
-    //private texture texture;
 
     public Item()
     {
@@ -60,7 +59,7 @@ public class Item implements Serializable
     public String toString()
     {
         return "Item{" +
-            "name='" + name + '\'' +
-            '}';
+                "name='" + name + '\'' +
+                '}';
     }
 }

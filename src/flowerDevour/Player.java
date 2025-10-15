@@ -14,9 +14,11 @@ import java.util.Map;
 //TODO: based on the equipped weapon the default animation should change
 
 /**
- * The class that represents the player.
+ * The class that represents the Player.
  * <p>
- * Holds containers for equipped tools, inventory and passives and a damage modifier.
+ * Holds {@link ToolContainer}s for equipped {@link Tool}s and
+ * inventory, {@link PassiveContainer} for {@link flowerDevour.passives.PassiveItem}s
+ * and a damage modifier.
  */
 public class Player extends Entity
 {
@@ -75,10 +77,10 @@ public class Player extends Entity
 
 
     /**
-     * Equips tool to first empty equip slot.
+     * Equips {@link Tool} to first empty equip slot.
      *
-     * @param inventoryIndex Index of tool to equip.
-     * @return Place in equip index.
+     * @param inventoryIndex Index of {@link Tool} to equip.
+     * @return Place in equipSlots index.
      */
     public int equipTool(int inventoryIndex)
     {
@@ -86,10 +88,10 @@ public class Player extends Entity
     }
 
     /**
-     * Equips tool to selected slot.
+     * Equips {@link Tool} to selected slot.
      *
      * @param equipSlotIndex Selected slot.
-     * @param inventoryIndex Index of tool to equip.
+     * @param inventoryIndex Index of {@link Tool} to equip.
      */
     public void equipTool(int equipSlotIndex, int inventoryIndex)
     {
@@ -97,9 +99,9 @@ public class Player extends Entity
     }
 
     /**
-     * Unequips tool to first empty inventory slot.
+     * Unequips {@link Tool} to first empty inventory slot.
      *
-     * @param equipSlotIndex Index of tool to unequip.
+     * @param equipSlotIndex Index of {@link Tool} to unequip.
      * @return Place in inventory index.
      */
     public int unequipTool(int equipSlotIndex)
@@ -108,10 +110,10 @@ public class Player extends Entity
     }
 
     /**
-     * Unequips tool to selected inventory slot.
+     * Unequips {@link Tool} to selected inventory slot.
      *
      * @param inventoryIndex Selected slot.
-     * @param equipSlotIndex Index of tool to unequip.
+     * @param equipSlotIndex Index of {@link Tool} to unequip.
      */
     public void unequipTool(int inventoryIndex, int equipSlotIndex)
     {
@@ -119,10 +121,10 @@ public class Player extends Entity
     }
 
     /**
-     * Rewards a Player with a new Tool.
-     * Tool is put into Player inventory.
+     * Rewards the {@link Player} with a new {@link Tool}.
+     * {@link Tool} is put into {@link Player} inventory.
      *
-     * @param reward The tool the Player is being rewarded with.
+     * @param reward The {@link Tool} the {@link Player} is being rewarded with.
      * @return Returns index of where the reward was placed in inventory.
      */
     public int rewardTool(Tool reward) //TODO: add try-catch block for when the player has a full inventory
@@ -131,10 +133,10 @@ public class Player extends Entity
     }
 
     /**
-     * Rewards a Player with a new PassiveItem.
-     * PassiveItem is put int Player passives.
+     * Rewards the {@link Player} with a new {@link PassiveItem}.
+     * {@link PassiveItem} is put into {@link Player} passives.
      *
-     * @param reward The PassiveItem the Player is being rewarded with.
+     * @param reward The {@link PassiveItem} the {@link Player} is being rewarded with.
      * @return Returns index of where the reward was placed in passives.
      */
     public int rewardPassive(PassiveItem reward)
@@ -143,7 +145,7 @@ public class Player extends Entity
     }
 
     /**
-     * @return Returns number of equipped Tools.
+     * @return Returns number of equipped {@link Tool}s.
      */
     public int getEquippedCount()
     {
@@ -151,7 +153,7 @@ public class Player extends Entity
     }
 
     /**
-     * @return Returns number of unequipped Tools in inventory.
+     * @return Returns number of unequipped {@link Tool}s in inventory.
      */
     public int getUnequippedCount()
     {
@@ -159,7 +161,7 @@ public class Player extends Entity
     }
 
     /**
-     * @return Returns number of PassiveItems the Player has.
+     * @return Returns number of {@link PassiveItem}s the {@link Player} has.
      */
     public int getPassivesCount()
     {
@@ -167,9 +169,13 @@ public class Player extends Entity
     }
 
     /**
-     * Executes the BasicAction of the current selected Tool from the equippedSlots on selected target Entity.
+     * Mandatory to set target before executing.
+     * <p>
+     * Executes the {@link flowerDevour.actions.BasicAction}
+     * of the current selected {@link Tool}
+     * from the equippedSlots on selected target {@link Entity}.
      *
-     * @throws PlayerException Throws if selected Tool is null.
+     * @throws PlayerException Throws if selected {@link Tool} is null.
      */
     public void doMove() throws PlayerException
     {

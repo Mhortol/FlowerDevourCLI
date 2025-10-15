@@ -1,0 +1,50 @@
+[
+  {
+    "class": "io.github.some_example_name.enemies.Enemy",
+    "health": 10,
+    "maxHealth": 10,
+    "name": "Puny Leaf",
+    "move": {
+      "class": "io.github.some_example_name.actions.BasicAction",
+      "name": "Leaf Shower",
+      "userChange": 0,
+      "targetChange": -2
+    }
+  },
+  {
+    "class": "io.github.some_example_name.enemies.Enemy",
+    "health": 20,
+    "maxHealth": 20,
+    "name": "Dandelion Trooper",
+    "move": {
+      "class": "io.github.some_example_name.actions.BasicAction",
+      "name": "Seed Attack",
+      "userChange": 0,
+      "targetChange": -7
+    }
+  },
+  {
+    "class": "io.github.some_example_name.enemies.Enemy",
+    "health": 20,
+    "maxHealth": 40,
+    "name": "Dormant Poppy",
+    "move": {
+      "class": "io.github.some_example_name.actions.BasicAction",
+      "name": "Drain",
+      "userChange": 5,
+      "targetChange": -5
+    }
+  },
+  {
+    "class": "io.github.some_example_name.enemies.Enemy",
+    "health": 30,
+    "maxHealth": 30,
+    "name": "Thorny Rose",
+    "move": {
+      "class": "io.github.some_example_name.actions.BasicAction",
+      "name": "Thorn Spray",
+      "userChange": -15,
+      "targetChange": -20
+    }
+  }
+]

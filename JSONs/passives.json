@@ -1,0 +1,15 @@
+[
+  {
+    "class" : "io.github.some_example_name.passives.AmbrosiaFruit",
+    "name": "Ambrosia Fruit"
+  },
+  {
+    "class" : "io.github.some_example_name.passives.Fertilizer",
+    "name" : "Fertilizer"
+  },
+  {
+    "class" : "io.github.some_example_name.passives.MinorFertilizer",
+    "name" : "Minor Fertilizer"
+  }
+
+]

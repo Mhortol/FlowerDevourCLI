@@ -34,16 +34,29 @@ Rough plan for this project:
 12. Expand the game with more floors, items, tools, enemies and potentially starting characters.
 */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main
 {
    public static void main(String[] args)
    {
-      System.out.println("Hello, World!");
+      BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
       
-      System.out.println(GameMaster.getEnemies().toString());
+      CommandReader commander = new CommandReader();
       
-      System.out.println(GameMaster.getTools().toString());
-      
-      System.out.println(GameMaster.getPassives().toString());
+      try
+      {
+         while (true)
+         {
+            String command = reader.readLine();
+            
+            commander.interpret(command);
+         }
+      } catch (IOException e)
+      {
+         throw new RuntimeException(e);
+      }
    }
 }

@@ -1,14 +1,14 @@
 [
   {
-    "class" : "io.github.some_example_name.passives.AmbrosiaFruit",
+    "class" : "flowerDevour.passives.AmbrosiaFruit",
     "name": "Ambrosia Fruit"
   },
   {
-    "class" : "io.github.some_example_name.passives.Fertilizer",
+    "class" : "flowerDevour.passives.Fertilizer",
     "name" : "Fertilizer"
   },
   {
-    "class" : "io.github.some_example_name.passives.MinorFertilizer",
+    "class" : "flowerDevour.passives.MinorFertilizer",
     "name" : "Minor Fertilizer"
   }
 

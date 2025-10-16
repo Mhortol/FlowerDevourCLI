@@ -39,5 +39,11 @@ public class Main
    public static void main(String[] args)
    {
       System.out.println("Hello, World!");
+      
+      System.out.println(GameMaster.getEnemies().toString());
+      
+      System.out.println(GameMaster.getTools().toString());
+      
+      System.out.println(GameMaster.getPassives().toString());
    }
 }

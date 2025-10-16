@@ -2,10 +2,14 @@ package flowerDevour;
 
 
 
+import com.esotericsoftware.jsonbeans.Json;
+import com.esotericsoftware.jsonbeans.JsonReader;
+import com.esotericsoftware.jsonbeans.JsonValue;
 import flowerDevour.enemies.Enemy;
 import flowerDevour.passives.PassiveItem;
 import flowerDevour.tools.Tool;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,9 +41,11 @@ public class GameMaster
     static public ArrayList<Enemy> initializeEnemies()
     {
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-
-        /*Json json = new Json();
-        JsonValue jsonReader = new JsonReader().parse(Gdx.files.internal("JSONs/enemies.json"));
+       
+        File file = new File("JSONs/enemies.json");
+        
+        Json json = new Json();
+        JsonValue jsonReader = new JsonReader().parse(file);
 
         for (JsonValue enemyJson : jsonReader.iterator())
         {
@@ -47,7 +53,7 @@ public class GameMaster
             Enemy newEnemy = json.fromJson(Enemy.class, text);
 
             enemies.add(newEnemy);
-        }*/
+        }
 
         return enemies;
     }
@@ -58,9 +64,11 @@ public class GameMaster
     static public ArrayList<Tool> initializeTools()
     {
         ArrayList<Tool> tools = new ArrayList<Tool>();
+       
+       File file = new File("JSONs/tools.json");
 
-        /*Json json = new Json();
-        JsonValue jsonReader = new JsonReader().parse(Gdx.files.internal("JSONs/tools.json"));
+        Json json = new Json();
+        JsonValue jsonReader = new JsonReader().parse(file);
 
         for (JsonValue toolJson : jsonReader.iterator())
         {
@@ -68,7 +76,7 @@ public class GameMaster
             Tool newTool = json.fromJson(Tool.class, text);
 
             tools.add(newTool);
-        }*/
+        }
 
         return tools;
     }
@@ -79,9 +87,11 @@ public class GameMaster
     static public ArrayList<PassiveItem> initializePassives()
     {
         ArrayList<PassiveItem> passives = new ArrayList<PassiveItem>();
+       
+        File file = new File("JSONs/passives.json");
 
-        /*Json json = new Json();
-        JsonValue jsonReader = new JsonReader().parse(Gdx.files.internal("JSONs/passives.json"));
+        Json json = new Json();
+        JsonValue jsonReader = new JsonReader().parse(file);
 
         for (JsonValue passiveJson : jsonReader.iterator())
         {
@@ -89,7 +99,7 @@ public class GameMaster
             PassiveItem newPassive = json.fromJson(PassiveItem.class, text);
 
             passives.add(newPassive);
-        }*/
+        }
 
         return passives;
     }

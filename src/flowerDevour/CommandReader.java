@@ -16,6 +16,8 @@ public class CommandReader
    {
       BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
       
+      System.out.println(welcomeMessage());
+      
       try
       {
          while (true)
@@ -28,7 +30,7 @@ public class CommandReader
                   System.out.println("What is your name?");
                   String name = reader.readLine();
                   newGame(name);
-                  System.out.println(name);
+                  System.out.println(map.drawMap());
                   break;
                case "continue game":
                   System.out.println("Temporary test text: continue game");
@@ -70,5 +72,22 @@ public class CommandReader
       map = new Map();
    }
    
-   
+   private String welcomeMessage()
+   {
+      return """
+              ______ _                         ______
+              |  ___| |                        |  _  \\
+              | |_  | | _____      _____ _ __  | | | |_____   _____  _   _ _ __
+              |  _| | |/ _ \\ \\ /\\ / / _ \\ '__| | | | / _ \\ \\ / / _ \\| | | | '__|
+              | |   | | (_) \\ V  V /  __/ |    | |/ /  __/\\ V / (_) | |_| | |
+              \\_|   |_|\\___/ \\_/\\_/ \\___|_|    |___/ \\___| \\_/ \\___/ \\__,_|_|
+              
+                         +----------+           +----------+
+                         | new game |           | continue |
+                         |          |           |   game   |
+                         +----------+           +----------+
+              
+              Type "new game" or "continue game"!
+              """;
+   }
 }

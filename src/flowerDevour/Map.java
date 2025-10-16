@@ -2,15 +2,13 @@ package flowerDevour;
 
 import java.util.Random;
 
-import java.util.Random;
-
 /**
  * A class to store basic information about the game's map.
  * <p>
- * The map consists of rows = {@code ROWS} and columns = {@code MAX_ROW_ROOMS}.
+ * The map consists of rows = {@code ROWS} and columns = {@code MAX_WIDTH}.
  * <p>
  * The first and last rows are reserved for the starting and boss {@link Room}s respectively.
- * Every other row is filled with from {@code MIN_ROW_ROOMS} to {@code MAX_ROW_ROOMS} rooms that are
+ * Every other row is filled with from {@code MIN_WIDTH} to {@code MAX_WIDTH} rooms that are
  * randomly either a {@link CombatRoom} or a {@link LootRoom}.
  * <p>
  * The {@link Player} may only advance forward through the Map and may only advance to a {@link Room}
@@ -18,10 +16,10 @@ import java.util.Random;
  */
 public class Map
 {
-   public final static int MAX_ROW_ROOMS = 4;
-   public final static int MIN_ROW_ROOMS = 2;
+   public final static int MAX_WIDTH = 4;
+   public final static int MIN_WIDTH = 2;
    public final static int ROWS = 6;
-   private Room rooms[][] = new Room[ROWS][MAX_ROW_ROOMS];
+   private Room rooms[][] = new Room[ROWS][MAX_WIDTH];
    private Room currentRoom;
    
    /**
@@ -54,7 +52,7 @@ public class Map
    {
       Random random = new Random();
       
-      int roomNumber = random.nextInt(MIN_ROW_ROOMS, MAX_ROW_ROOMS + 1);
+      int roomNumber = random.nextInt(MIN_WIDTH, MAX_WIDTH + 1);
       
       for (int i = 0; i < roomNumber; i++)
       {
@@ -69,14 +67,14 @@ public class Map
     */
    private void addRoomPaths(int row) //Row can't be the first row
    {
-      for (int i = 1; i < MAX_ROW_ROOMS; i++)
+      for (int i = 1; i < MAX_WIDTH; i++)
       {
          if (rooms[row][i] == null)
          {
             continue;
          }
          
-         for (int j = 0; j < MAX_ROW_ROOMS; j++)
+         for (int j = 0; j < MAX_WIDTH; j++)
          {
             if (rooms[row - 1][j] == null)
             {
@@ -145,7 +143,7 @@ public class Map
    {
       for (int i = 0; i < ROWS; i++)
       {
-         for (int j = 0; j < MAX_ROW_ROOMS; j++)
+         for (int j = 0; j < MAX_WIDTH; j++)
          {
             if (rooms[i][j] == null)
             {
@@ -161,5 +159,74 @@ public class Map
    public Room getRoom(int row, int col)
    {
       return rooms[row][col];
+   }
+   
+   public String drawMap()
+   {
+      String art = "";
+      
+      for (int i = ROWS - 1; i > -1; i--)
+      {
+         art = art + drawRow(i);
+         art = art + "\n";
+      }
+      
+      return art;
+   }
+   
+   private String drawRow(int row)
+   {
+      String art = "";
+      
+      for (int i = 0; i < MAX_WIDTH; i++)
+      {
+         if (rooms[row][i] == null)
+         {
+            continue;
+         }
+         
+         art = art + "+------+ ";
+      }
+      
+      art = art + "\n";
+      
+      for (int i = 0; i < MAX_WIDTH; i++)
+      {
+         if (rooms[row][i] == null)
+         {
+            continue;
+         }
+         
+         if (rooms[row][i].getClass() == LootRoom.class)
+         {
+            art = art + "| loot | ";
+         }
+         if (rooms[row][i].getClass() == CombatRoom.class)
+         {
+            art = art + "|combat| ";
+         }
+         if (row == 0)
+         {
+            art = art + "| start| ";
+         }
+         if (row == ROWS - 1)
+         {
+            art = art + "| boss | ";
+         }
+      }
+      
+      art = art + "\n";
+      
+      for (int i = 0; i < MAX_WIDTH; i++)
+      {
+         if (rooms[row][i] == null)
+         {
+            continue;
+         }
+         
+         art = art + "+------+ ";
+      }
+      
+      return art;
    }
 }

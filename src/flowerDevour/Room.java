@@ -7,7 +7,7 @@ public class Room
 {
    private String backgroundPath;
    //0 left path, MAX right path, else middle paths;
-   private Room paths[] = new Room[Map.MAX_ROW_ROOMS];
+   private Room paths[] = new Room[Map.MAX_WIDTH];
    
    public Room()
    {

@@ -42,21 +42,8 @@ public class Main
 {
    public static void main(String[] args)
    {
-      BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+      CommandReader reader = new CommandReader();
       
-      CommandReader commander = new CommandReader();
-      
-      try
-      {
-         while (true)
-         {
-            String command = reader.readLine();
-            
-            commander.interpret(command);
-         }
-      } catch (IOException e)
-      {
-         throw new RuntimeException(e);
-      }
+      reader.interpret();
    }
 }

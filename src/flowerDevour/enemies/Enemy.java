@@ -24,59 +24,59 @@ import java.util.Objects;
  */
 public class Enemy extends Entity implements Serializable
 {
-    private BasicAction move;
-
-    public Enemy()
-    {
-
-    }
-
-    public Enemy(int health, int maxHealth, String name, BasicAction move)
-    {
-        super(health, maxHealth, name);
-        setMove(move);
-        move.setUser(this);
-    }
-
-    //for copying objects
-    public Enemy(Enemy enemy)
-    {
-        super(enemy);
-        setMove(enemy.getMove());
-    }
-
-    public BasicAction getMove()
-    {
-        return move;
-    }
-
-    public void setMove(BasicAction move) throws EntityException
-    {
-        if (move == null)
-        {
-            throw new EntityException("Null move.");
-        }
-
-        this.move = move;
-    }
-
-    /**
-     * Set's the {@link BasicAction}'s user to this {@link Enemy}
-     * and target to {@link Enemy}'s target, then executes it.
-     */
-    public void doMove()
-    {
-        move.setUser(this);
-        move.setTarget(super.getTarget());
-        move.execute();
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Enemy{" +
-                "move=" + move +
-                super.toString() +
-                '}';
-    }
+   private BasicAction move;
+   
+   public Enemy()
+   {
+   
+   }
+   
+   public Enemy(int health, int maxHealth, String name, BasicAction move)
+   {
+      super(health, maxHealth, name);
+      setMove(move);
+      move.setUser(this);
+   }
+   
+   //for copying objects
+   public Enemy(Enemy enemy)
+   {
+      super(enemy);
+      setMove(enemy.getMove());
+   }
+   
+   public BasicAction getMove()
+   {
+      return move;
+   }
+   
+   public void setMove(BasicAction move) throws EntityException
+   {
+      if (move == null)
+      {
+         throw new EntityException("Null move.");
+      }
+      
+      this.move = move;
+   }
+   
+   /**
+    * Set's the {@link BasicAction}'s user to this {@link Enemy}
+    * and target to {@link Enemy}'s target, then executes it.
+    */
+   public void doMove()
+   {
+      move.setUser(this);
+      move.setTarget(super.getTarget());
+      move.execute();
+   }
+   
+   @Override
+   public String toString()
+   {
+      return "Enemy{" +
+              "move=" + move +
+              super.toString() +
+              '}';
+   }
 }

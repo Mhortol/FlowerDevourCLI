@@ -18,150 +18,148 @@ import java.util.Random;
  */
 public class Map
 {
-    public final static int MAX_ROW_ROOMS = 4;
-    public final static int MIN_ROW_ROOMS = 2;
-    public final static int ROWS = 6;
-    private Room rooms[][] = new Room[ROWS][MAX_ROW_ROOMS];
-    private Room currentRoom;
-
-    /**
-     * Generates a new {@link Map}.
-     */
-    public Map()
-    {
-        rooms[0][0] = new Room(); //starting room
-        rooms[ROWS - 1][0] = new Room(); //boss room
-
-        for (int i = 1; i < ROWS - 1; i++)
-        {
-            addRowRooms(i);
-        }
-        for (int i = 1; i < ROWS; i++)
-        {
-            addRoomPaths(i);
-        }
-
-        currentRoom = rooms[0][0];
-    }
-
-
-    /**
-     * Adds random {@link Room}s to the {@link Map} at the given row
-     *
-     * @param row Index of the row to add the {@link Room}s to.
-     */
-    private void addRowRooms(int row)
-    {
-        Random random = new Random();
-
-        int roomNumber = random.nextInt(MIN_ROW_ROOMS, MAX_ROW_ROOMS + 1);
-
-        for (int i = 0; i < roomNumber; i++)
-        {
-            rooms[row][i] = initializeRandomRoom();
-        }
-    }
-
-    /**
-     * Adds paths to the {@link Room}s in the specified row.
-     *
-     * @param row Index of row with {@link Room}s that will receive paths.
-     */
-    private void addRoomPaths(int row) //Row can't be the first row
-    {
-        for (int i = 1; i < MAX_ROW_ROOMS; i++)
-        {
-            if (rooms[row][i] == null)
+   public final static int MAX_ROW_ROOMS = 4;
+   public final static int MIN_ROW_ROOMS = 2;
+   public final static int ROWS = 6;
+   private Room rooms[][] = new Room[ROWS][MAX_ROW_ROOMS];
+   private Room currentRoom;
+   
+   /**
+    * Generates a new {@link Map}.
+    */
+   public Map()
+   {
+      rooms[0][0] = new Room(); //starting room
+      rooms[ROWS - 1][0] = new Room(); //boss room
+      
+      for (int i = 1; i < ROWS - 1; i++)
+      {
+         addRowRooms(i);
+      }
+      for (int i = 1; i < ROWS; i++)
+      {
+         addRoomPaths(i);
+      }
+      
+      currentRoom = rooms[0][0];
+   }
+   
+   
+   /**
+    * Adds random {@link Room}s to the {@link Map} at the given row
+    *
+    * @param row Index of the row to add the {@link Room}s to.
+    */
+   private void addRowRooms(int row)
+   {
+      Random random = new Random();
+      
+      int roomNumber = random.nextInt(MIN_ROW_ROOMS, MAX_ROW_ROOMS + 1);
+      
+      for (int i = 0; i < roomNumber; i++)
+      {
+         rooms[row][i] = initializeRandomRoom();
+      }
+   }
+   
+   /**
+    * Adds paths to the {@link Room}s in the specified row.
+    *
+    * @param row Index of row with {@link Room}s that will receive paths.
+    */
+   private void addRoomPaths(int row) //Row can't be the first row
+   {
+      for (int i = 1; i < MAX_ROW_ROOMS; i++)
+      {
+         if (rooms[row][i] == null)
+         {
+            continue;
+         }
+         
+         for (int j = 0; j < MAX_ROW_ROOMS; j++)
+         {
+            if (rooms[row - 1][j] == null)
             {
-                continue;
+               continue;
             }
-
-            for (int j = 0; j < MAX_ROW_ROOMS; j++)
+            rooms[row - 1][j].setPaths(rooms[row]);
+         }
+      }
+   }
+   
+   
+   /**
+    * Used to advance the {@link Player} through the {@link Room}s of the {@link Map}.
+    *
+    * @param index Index of path the {@link Player} wishes to travel to.
+    * @return The {@link Room} that the {@link Player} will travel to.
+    * @throws MapException Throws when there isn't a path with the given index.
+    */
+   public Room advance(int index) throws MapException
+   {
+      Room[] possiblePaths = currentRoom.getPaths();
+      
+      if (possiblePaths[index] == null)
+      {
+         throw new MapException("Invalid advance");
+      }
+      
+      currentRoom = possiblePaths[index];
+      
+      return currentRoom;
+   }
+   
+   /**
+    * Initializes randomly either a {@link LootRoom}, {@link CombatRoom} with reward
+    * or {@link CombatRoom} without reward.
+    *
+    * @return New random {@link Room}.
+    */
+   public Room initializeRandomRoom()
+   {
+      Room room;
+      Random random = new Random();
+      
+      int roomType = random.nextInt(4);
+      
+      if (roomType == 0)
+      {
+         room = LootRoom.initliazeRandomLootRoom();
+      } else
+      {
+         roomType = random.nextInt(3);
+         
+         if (roomType == 0)
+         {
+            room = CombatRoom.initializeRandomCombatRoom(CombatRoom.WITHOUT_REWARD);
+         } else
+         {
+            room = CombatRoom.initializeRandomCombatRoom(CombatRoom.WITH_REWARD);
+         }
+      }
+      
+      return room;
+   }
+   
+   public void print()
+   {
+      for (int i = 0; i < ROWS; i++)
+      {
+         for (int j = 0; j < MAX_ROW_ROOMS; j++)
+         {
+            if (rooms[i][j] == null)
             {
-                if (rooms[row - 1][j] == null)
-                {
-                    continue;
-                }
-                rooms[row - 1][j].setPaths(rooms[row]);
+               continue;
             }
-        }
-    }
-
-
-    /**
-     * Used to advance the {@link Player} through the {@link Room}s of the {@link Map}.
-     *
-     * @param index Index of path the {@link Player} wishes to travel to.
-     * @return The {@link Room} that the {@link Player} will travel to.
-     * @throws MapException Throws when there isn't a path with the given index.
-     */
-    public Room advance(int index) throws MapException
-    {
-        Room[] possiblePaths = currentRoom.getPaths();
-
-        if (possiblePaths[index] == null)
-        {
-            throw new MapException("Invalid advance");
-        }
-
-        currentRoom = possiblePaths[index];
-
-        return currentRoom;
-    }
-
-    /**
-     * Initializes randomly either a {@link LootRoom}, {@link CombatRoom} with reward
-     * or {@link CombatRoom} without reward.
-     *
-     * @return New random {@link Room}.
-     */
-    public Room initializeRandomRoom()
-    {
-        Room room;
-        Random random = new Random();
-
-        int roomType = random.nextInt(4);
-
-        if (roomType == 0)
-        {
-            room = LootRoom.initliazeRandomLootRoom();
-        }
-        else
-        {
-            roomType = random.nextInt(3);
-
-            if (roomType == 0)
-            {
-                room = CombatRoom.initializeRandomCombatRoom(CombatRoom.WITHOUT_REWARD);
-            }
-            else
-            {
-                room = CombatRoom.initializeRandomCombatRoom(CombatRoom.WITH_REWARD);
-            }
-        }
-
-        return room;
-    }
-
-    public void print()
-    {
-        for (int i = 0; i < ROWS; i++)
-        {
-            for (int j = 0; j < MAX_ROW_ROOMS; j++)
-            {
-                if (rooms[i][j] == null)
-                {
-                    continue;
-                }
-
-                System.out.print(rooms[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public Room getRoom(int row, int col)
-    {
-        return rooms[row][col];
-    }
+            
+            System.out.print(rooms[i][j] + " ");
+         }
+         System.out.println();
+      }
+   }
+   
+   public Room getRoom(int row, int col)
+   {
+      return rooms[row][col];
+   }
 }

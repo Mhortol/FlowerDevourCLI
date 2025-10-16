@@ -11,14 +11,14 @@ import flowerDevour.Player;
  */
 public class Fertilizer extends PassiveItem
 {
-    public void onGet(Player owner)
-    {
-        int passives = owner.getPassivesCount();
-
-        double modifier = 0.25 * passives;
-
-        modifier += owner.getDamageModifier();
-
-        owner.setDamageModifier(modifier);
-    }
+   public void onGet(Player owner)
+   {
+      int passives = owner.getPassivesCount();
+      
+      double modifier = 0.25 * passives;
+      
+      modifier += owner.getDamageModifier();
+      
+      owner.setDamageModifier(modifier);
+   }
 }

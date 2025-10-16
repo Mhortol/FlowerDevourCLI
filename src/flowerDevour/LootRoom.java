@@ -14,38 +14,38 @@ import flowerDevour.passives.PassiveItem;
  */
 public class LootRoom extends Room
 {
-    private PassiveItem reward;
-
-    public LootRoom()
-    {
-        super();
-    }
-
-    /**
-     * @param reward The {@link PassiveItem} to reward the {@link Player} with.
-     */
-    public LootRoom(PassiveItem reward)
-    {
-        super();
-        setReward(reward);
-    }
-
-    public PassiveItem getReward()
-    {
-        return reward;
-    }
-
-    public void setReward(PassiveItem reward)
-    {
-        this.reward = reward;
-    }
-
-    public static LootRoom initliazeRandomLootRoom()
-    {
-        LootRoom room = new LootRoom();
-
-        room.setReward(GameMaster.provideRandomPassive());
-
-        return room;
-    }
+   private PassiveItem reward;
+   
+   public LootRoom()
+   {
+      super();
+   }
+   
+   /**
+    * @param reward The {@link PassiveItem} to reward the {@link Player} with.
+    */
+   public LootRoom(PassiveItem reward)
+   {
+      super();
+      setReward(reward);
+   }
+   
+   public PassiveItem getReward()
+   {
+      return reward;
+   }
+   
+   public void setReward(PassiveItem reward)
+   {
+      this.reward = reward;
+   }
+   
+   public static LootRoom initliazeRandomLootRoom()
+   {
+      LootRoom room = new LootRoom();
+      
+      room.setReward(GameMaster.provideRandomPassive());
+      
+      return room;
+   }
 }
